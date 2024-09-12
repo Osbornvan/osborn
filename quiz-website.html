@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVANDIA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFC0CB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #FF69B4;
+        }
+        button {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #FF1493;
+        }
+        #result-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <h1>HELLO AVANDIA. I LOVE YOU</h1>
+        <p>I know you wanted me to ask you to be my girlreind Over Lunch date.
+            Well thats too common This My way of doing just tha over few Quiz. Good luck!</p>
+        <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What's my favorite Foobal Team?",
+                answers: ["Chelsea", "Arsenal", "Manchester United", "Newcastle"],
+                correct: 2
+            },
+            {
+                question: "What's my favorite food?",
+                answers: ["Fish", "Beef", "Chicken", "Chapos"],
+                correct: 1
+            },
+            {
+                question: "Where did we first meet?",
+                answers: ["School", "Work", "Park", "Online"],
+                correct: 0
+            },
+            {
+                question: "What's my dream vacation destination?",
+                answers: ["Paris", "Bali", "New York", "Tokyo"],
+                correct: 2
+            },
+            {
+                question: "What's my favorite hobby?",
+                answers: ["Reading", "Cooking", "Painting", "Hiking"],
+                correct: 1            }
+        ];
+
+        let currentQuestion = 0;
+
+        function startQuiz() {
+            currentQuestion = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const quiz = document.getElementById('quiz');
+            const question = questions[currentQuestion];
+
+            let html = `<h1>${question.question}</h1>`;
+            for (let i = 0; i < question.answers.length; i++) {
+                html += `<button onclick="checkAnswer(${i})">${question.answers[i]}</button>`;
+            }
+
+            quiz.innerHTML = html;
+        }
+
+        function checkAnswer(answer) {
+            if (answer === questions[currentQuestion].correct) {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                } else {
+                    showFinalQuestion();
+                }
+            } else {
+                alert("Come on babe Give it another try. Think about That kiss!");
+            }
+        }
+
+        function showFinalQuestion() {
+            const quiz = document.getElementById('quiz');
+            quiz.innerHTML = `
+                <h1>YOU DID IT,, OOH MY GOD BABE THIS IS AMAZING CONGRATULATONS ARE IN ORDER.. 
+                    NOW WILL YOU MAKE ME THE HAPPIEST MAN BY BEING MY GIRLFRIEND?</h1>
+                <button onclick="showResult(true)">YES</button>
+                <button onclick="showResult(false)">NO</button>
+            `;
+        }
+
+        function showResult(answer) {
+            const quiz = document.getElementById('quiz');
+            if (answer) {
+                quiz.innerHTML = `
+                    <h1>woow thanks babe
+                        Unaezanidinya sasa Jaber ❤️</h1>
+                    <img src="https://nypost.com/wp-content/uploads/sites/2/2017/10/best-worst-lovers-world.jpg?quality=75&strip=all&w=744"alt="I LOVE YOU">
+                `;
+            } else {
+                quiz.innerHTML = `
+                    <h1>Ohhh NOOO...</h1>
+                    <img src="https://i.imgflip.com/4/3g5k6.jpg"alt="I DIDNT CODE THIS SIDE I NO 
+                    YOU WONT EVEN NOTICE,, BU SERIOUSLY WHY WOULD YOU SAY KNOW ,, WE LOVE EACH OTHER.">
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
